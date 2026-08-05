@@ -9,3 +9,5 @@
 ## 3. 실행 방법
 ```bash
 python main.py
+
+## 4. 라이선스
