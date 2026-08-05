@@ -10,7 +10,8 @@ def print_menu():
     print("2. 퀴즈 추가")
     print("3. 퀴즈 목록")
     print("4. 점수 확인")
-    print("5. 종료")
+    print("5. 퀴즈 삭제")
+    print("6. 종료")
     print("===================================")
 
 def play_quiz(game):
@@ -106,6 +107,34 @@ def show_score(game):
     """4. 최고 점수 확인"""
     print(f"\n🏆 현재 최고 점수: {game.best_score}점")
 
+def delete_quiz(game):
+    """5. 퀴즈 삭제 기능"""
+    if not game.quizzes:
+        print("\n⚠️ 삭제할 퀴즈가 없습니다.")
+        return
+
+    show_quizzes(game)
+    while True:
+        try:
+            user_input = input("\n삭제할 퀴즈 번호를 입력하세요 (취소: 0): ").strip()
+            if not user_input:
+                print("⚠️ 입력이 비어있습니다.")
+                continue
+
+            num = int(user_input)
+            if num == 0:
+                print("취소되었습니다.")
+                return
+
+            if 1 <= num <= len(game.quizzes):
+                deleted = game.delete_quiz(num - 1)
+                print(f"\n✅ [{num}] '{deleted.question}' 퀴즈가 삭제되었습니다!")
+                break
+            else:
+                print(f"⚠️ 1~{len(game.quizzes)} 사이의 번호를 입력해 주세요.")
+        except ValueError:
+            print("⚠️ 숫자만 입력해주세요.")
+
 def main():
     game = QuizGame()
 
@@ -123,11 +152,13 @@ def main():
             elif choice == "4":
                 show_score(game)
             elif choice == "5":
+                delete_quiz(game)
+            elif choice == "6":
                 print("\n게임을 종료합니다. 이용해주셔서 감사합니다! 💕")
                 game.save_data()
                 break
             else:
-                print("\n⚠️ 잘못된 입력입니다. 1~5 사이의 숫자를 입력해주세요.")
+                print("\n⚠️ 잘못된 입력입니다. 1~6 사이의 숫자를 입력해주세요.")
 
         except (KeyboardInterrupt, EOFError):
             print("\n\n⚠️ 강제 종료 요청이 감지되었습니다. 데이터를 안전하게 저장하고 종료합니다.")
