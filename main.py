@@ -14,13 +14,14 @@ def print_menu():
     print("===================================")
 
 def play_quiz(game):
-    """1. 퀴즈 풀기 기능"""
+    """1. 퀴즈 풀기 기능 (100점 만점 산출)"""
     if not game.quizzes:
         print("\n⚠️ 등록된 퀴즈가 없습니다.")
         return
 
-    print(f"\n📝 퀴즈를 시작합니다! (총 {len(game.quizzes)}문제)")
-    score = 0
+    total_count = len(game.quizzes)
+    print(f"\n📝 퀴즈를 시작합니다! (총 {total_count}문제)")
+    correct_count = 0
 
     for i, quiz in enumerate(game.quizzes, 1):
         quiz.display(i)
@@ -39,15 +40,18 @@ def play_quiz(game):
 
                 if quiz.is_correct(answer_num):
                     print("✅ 정답입니다!")
-                    score += 1
+                    correct_count += 1
                 else:
                     print(f"❌ 틀렸습니다! 정답은 {quiz.answer}번입니다.")
                 break
             except ValueError:
                 print("⚠️ 숫자만 입력해주세요.")
 
+    # 100점 만점 기준 점수 계산
+    score = int((correct_count / total_count) * 100)
+
     print("\n===================================")
-    print(f"🏆 결과: {len(game.quizzes)}문제 중 {score}문제 정답!")
+    print(f"🏆 결과: {total_count}문제 중 {correct_count}문제 정답! ({score}점)")
     if score > game.best_score:
         game.best_score = score
         game.save_data()
