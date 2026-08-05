@@ -46,7 +46,7 @@ class QuizGame:
             self.best_score = 0
             self.save_data()
 
-    def save_data(self):
+def save_data(self):
         """현재 퀴즈 목록과 최고 점수를 state.json에 저장하는 메서드"""
         data = {
             "quizzes": [q.to_dict() for q in self.quizzes],
@@ -55,7 +55,7 @@ class QuizGame:
         with open(self.filepath, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
-            def delete_quiz(self, index):
+def delete_quiz(self, index):
         """지정한 인덱스의 퀴즈를 삭제하고 저장하는 메서드"""
         if 0 <= index < len(self.quizzes):
             deleted = self.quizzes.pop(index)
