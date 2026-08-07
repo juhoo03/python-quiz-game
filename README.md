@@ -123,7 +123,16 @@ User / CLI Input
                          ▼
                      state.json
 ```
-
+> 💡 **모듈 호출 흐름 및 데이터 처리 핵심 요약**
+> 
+> 1. **입력 검증 (`input_helper.py`)**  
+>    사용자 입력을 `main.py`에서 받으면 먼저 `input_helper`를 거쳐 잘못된 형식이나 범위 밖의 입력값을 사전에 검증합니다.
+> 
+> 2. **객체 연산 (`Quiz` & `QuizGame`)**  
+>    메뉴 선택에 따라 퀴즈 풀기(`play_quiz`), 추가(`add_quiz`), 삭제(`delete_quiz`) 등의 로직을 수행하고, `Quiz` 객체 단위로 정답 확인 및 리스트를 관리합니다.
+> 
+> 3. **원자적 저장 (`Atomic Write`)**  
+>    퀴즈 추가/삭제 등으로 데이터 변경 발생 시 `QuizGame.save_data()`가 실행됩니다. 원본 파일 손상을 막기 위해 임시 파일(`state.json.tmp`)에 먼저 저장한 후, `os.replace()`를 통해 `state.json`으로 안전하게 교체합니다.
 ---
 
 ## 6. 실행 방법
