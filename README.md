@@ -164,29 +164,6 @@ User / CLI Input
 
 ---
 
-### JSON Schema
-
-| 필드명 | 데이터 타입 | 필수 여부 | 설명 |
-|---|---|---|---|
-| `quizzes` | Array | 필수 | 등록된 퀴즈 객체 목록 |
-| `quizzes[].question` | String | 필수 | 퀴즈 문제 텍스트 |
-| `quizzes[].choices` | Array String | 필수 | 4개의 보기 선택지 |
-| `quizzes[].answer` | Integer | 필수 | 정답 번호, 1~4 |
-| `best_score` | Integer | 필수 | 역대 최고 점수 |
-
----
-
-## JSON 포맷 선택 이유
-
-| 이유 | 설명 |
-|---|---|
-| 가독성 | 사람이 직접 읽고 수정하기 쉬움 |
-| 경량성 | XML보다 구조가 간단하고 파일 크기가 작음 |
-| Python 호환성 | Python의 `dict`, `list`와 쉽게 매핑 가능 |
-| 외부 DB 불필요 | 작은 규모의 프로젝트에서 간단한 데이터 저장 가능 |
-
----
-
 ## 9. 파일 저장 정책
 
 ## Atomic Write 적용
