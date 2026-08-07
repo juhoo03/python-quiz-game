@@ -328,7 +328,7 @@ Docs: README.md 실행 증빙 스크린샷 및 명세 보완
 | Git Commit Log 증빙 | 10회 이상 커밋 및 병합 커밋 |
 | Git Clone / Pull 증빙 | 저장소 복제 및 최신 코드 반영 실습 |
 
-![Uploading 스크린샷 2026-08-07 오후 3.52.28.png…]()
+![git log 그래프 스크린샷](docs/screenshots/git_log.png)
 
 ```
 
